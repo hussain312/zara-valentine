@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Zara ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --primary: #ff8fa3;
+            --secondary: #ffb3c1;
+            --bg-color: #fff0f3;
+            --text-color: #590d22;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#ffccd5 2px, transparent 2px);
+            background-size: 30px 30px;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* --- BIGGER CONTAINER --- */
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 4rem; 
+            border-radius: 35px;
+            box-shadow: 0 25px 70px rgba(255, 143, 163, 0.5);
+            max-width: 95%;
+            width: 700px; /* Big and wide */
+            border: 6px solid white;
+            position: relative;
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            color: var(--primary);
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .gif-container img {
+            width: 100%; /* Auto adjust width */
+            max-width: 300px; /* Cap size so it doesn't get too huge */
+            height: auto;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 18px 36px;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Fredoka One', cursive;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 0 #ff5c7c;
+            margin: 10px;
+        }
+
+        .btn:hover { background-color: #ff5c7c; }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            position: relative;
+            height: 140px;
+        }
+
+        #noBtn {
+            position: relative; 
+            background-color: #e5e5e5;
+            color: #555;
+            box-shadow: 0 6px 0 #bbb;
+            z-index: 200;
+        }
+        
+        #yesBtn { z-index: 1; }
+
+        .reasons-list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .reasons-list li {
+            background: white;
+            margin: 15px 0;
+            padding: 15px 25px;
+            border-radius: 15px;
+            border: 3px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: var(--text-color);
+        }
+
+        .hidden { display: none !important; }
+        .fade-in { animation: fadeIn 0.5s ease-in; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="step1" class="container fade-in">
+        <div class="gif-container">
+            <img src="images/1.gif" onerror="this.src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzJjYzBiOTFjYzFjY2I5MWMxY2I5MWMxY2I5MWMxY2I5MS9lcC9naXBoeS5naWY/26FLdmIp6wJr91JAI/giphy.gif'" alt="Intro">
+        </div>
+        <h1>Hey Zara! ❤️</h1>
+        <p>I have something important to ask you...</p>
+        <button class="btn" onclick="nextStep(2)">What is it?</button>
+    </div>
+
+    <div id="step2" class="container hidden fade-in">
+        <h1>Why You? 🐰</h1>
+        <ul class="reasons-list">
+            <li>✨ Your Smile</li>
+            <li>💖 The way you take care of me</li>
+            <li>💋 Those god damn goofy kisses of yours</li>
+        </ul>
+        <div class="gif-container">
+            <img src="images/2.gif" onerror="this.src='https://media.giphy.com/media/Opfku5CIOr2bg9Iu2d/giphy.gif'" alt="Reasons">
+        </div>
+        <button class="btn" onclick="nextStep(3)">Next</button>
+    </div>
+
+    <div id="step3" class="container hidden fade-in">
+        <div class="gif-container">
+             <img src="images/3.gif" onerror="this.src='https://media.giphy.com/media/clsLrDkNeYp708YV2I/giphy.gif'" alt="Please">
+        </div>
+        <h1>Will you be my valentine meri pyaar meethi jaan?</h1>
+        <div class="btn-group">
+            <button id="yesBtn" class="btn" onclick="handleYes()">YES!</button>
+            <button id="noBtn" class="btn" onmouseover="moveNoButton()" onclick="moveNoButton()">No</button>
+        </div>
+    </div>
+
+    <div id="step4" class="container hidden fade-in">
+        <h1>YAY! I knew it! 🎉</h1>
+        <p>Now, pick your gift:</p>
+        <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+            <button class="btn" style="width: 80%;" onclick="finish('27 Kisses incoming! 😘')">27 Kisses</button>
+            <button class="btn" style="width: 80%;" onclick="finish('Writing poetry for you... 📜')">A piece of poetry</button>
+            <button class="btn" style="width: 80%;" onclick="finish('You have me forever. 💍')">Just have me forever</button>
+        </div>
+    </div>
+
+    <div id="step5" class="container hidden fade-in">
+        <div class="gif-container">
+             <img src="images/4.jpeg" onerror="this.src='https://media.giphy.com/media/T86i6yDyOYz7y/giphy.gif'" alt="Success">
+        </div>
+        <h1 id="finalMessage"></h1>
+        <p>See you soon, Zara ❤️</p>
+    </div>
+
+    <script>
+        const noPhrases = [
+            "No", "Are you sure?", "Really sure??", "Pookie please? 🥺",
+            "Don't do this to me!", "I'm gonna cry...", "You're breaking my heart! 💔",
+            "Think about the bunnies!", "Zara please!", "Last chance!", 
+            "I will give you 27 kisses!", "Don't be cold!", "Have a heart!"
+        ];
+        
+        let noCount = 0;
+        let yesScale = 1;
+
+        function nextStep(stepNumber) {
+            document.querySelectorAll('.container').forEach(el => el.classList.add('hidden'));
+            document.getElementById('step' + stepNumber).classList.remove('hidden');
+        }
+
+        function moveNoButton() {
+            const noBtn = document.getElementById('noBtn');
+            const yesBtn = document.getElementById('yesBtn');
+            
+            noCount++;
+            noBtn.innerText = noPhrases[noCount % noPhrases.length];
+
+            yesScale += 0.2; 
+            yesBtn.style.transform = `scale(${yesScale})`;
+
+            const maxWidth = window.innerWidth - noBtn.offsetWidth - 40;
+            const maxHeight = window.innerHeight - noBtn.offsetHeight - 40;
+
+            const randomX = Math.random() * maxWidth;
+            const randomY = Math.random() * maxHeight;
+
+            noBtn.style.position = 'fixed'; 
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        function handleYes() {
+            nextStep(4);
+            triggerConfetti();
+        }
+
+        function finish(message) {
+            document.getElementById('finalMessage').innerText = message;
+            nextStep(5);
+            triggerConfetti();
+        }
+
+        function triggerConfetti() {
+            const duration = 3000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+            const random = (min, max) => Math.random() * (max - min) + min;
+
+            const interval = setInterval(function() {
+                const timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) return clearInterval(interval);
+
+                const particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: random(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: random(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+    </script>
+</body>
+</html>
